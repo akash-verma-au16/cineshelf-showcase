@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CineShelf</title>
+<meta name="description" content="A local media library for TV, movies and anime with a streaming-service feel. Watch the tour, then try the demo in your browser.">
+<meta property="og:title" content="CineShelf">
+<meta property="og:description" content="Your own media library, with a streaming-service feel. Try the demo in your browser.">
+<meta property="og:image" content="poster.jpg">
+<meta property="og:type" content="video.other">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23e50914'/%3E%3Ctext x='16' y='23' font-family='Arial Black,sans-serif' font-size='18' text-anchor='middle' fill='%23fff'%3EC%3C/text%3E%3C/svg%3E">
+<style>
+  :root { --bg: #070708; --panel: #121215; --line: #26262c; --ink: #f2f2f4; --muted: #a2a2ab; --red: #e50914; --red-soft: #ff5a63; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right)); }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
+  .mark { font: 900 28px/1 "Segoe UI Black", "Arial Black", sans-serif; letter-spacing: -.02em; text-decoration: none; color: #fff; }
+  .mark b { color: var(--red); }
+  .gh { color: var(--muted); text-decoration: none; font-size: 15px; }
+  .gh:hover { color: var(--ink); }
+  h1 { font: 800 clamp(32px, 5.4vw, 60px)/1.04 "Segoe UI", system-ui, sans-serif; letter-spacing: -.025em; margin: 28px 0 14px; text-wrap: balance; max-width: 18ch; }
+  .lede { color: var(--muted); font-size: clamp(17px, 2vw, 20px); max-width: 60ch; margin: 0 0 26px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 34px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 6px; font-weight: 600; font-size: 17px; text-decoration: none; }
+  .btn.primary { background: #fff; color: #000; }
+  .btn.primary:hover { background: #e6e6e6; }
+  .btn.ghost { background: rgba(255,255,255,.1); color: var(--ink); }
+  .btn.ghost:hover { background: rgba(255,255,255,.18); }
+  .btn:focus-visible { outline: 3px solid var(--red-soft); outline-offset: 3px; }
+  video { width: 100%; display: block; border-radius: 10px; background: #000; box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 0 1px var(--line); aspect-ratio: 16 / 9; }
+  .note { color: var(--muted); font-size: 14px; margin-top: 12px; }
+  section { margin-top: 84px; }
+  h2 { font: 800 clamp(24px, 3vw, 32px)/1.15 "Segoe UI", system-ui, sans-serif; letter-spacing: -.015em; margin: 0 0 22px; }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; text-decoration: none; color: inherit; }
+  .card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+  .card div { padding: 14px 16px 18px; }
+  .card h3 { margin: 0 0 4px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .card:hover { border-color: #3a3a42; }
+  .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+  .how div { border-top: 2px solid var(--red); padding-top: 12px; }
+  .how h3 { margin: 0 0 6px; font-size: 17px; }
+  .how p { margin: 0; color: var(--muted); font-size: 15px; }
+  footer { margin: 96px 0 40px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="mark" href="./"><b>CINE</b>SHELF</a>
+    <a class="gh" href="https://github.com/akash-verma-au16/CineShelf">Source on GitHub</a>
+  </header>
+
+  <h1>Your own media library, with a streaming-service feel.</h1>
+  <p class="lede">CineShelf turns the folders of TV shows, movies and anime on your drives into a library you can browse like a streaming service. It plays through a real VLC player under its own controls, offline, with no account and no subscription.</p>
+  <div class="cta">
+    <a class="btn primary" href="app/">▶ Try the demo</a>
+    <a class="btn ghost" href="#tour">Watch the tour</a>
+  </div>
+
+  <video id="tour" controls preload="metadata" poster="poster.jpg" playsinline>
+    <source src="cineshelf.mp4" type="video/mp4">
+    <track kind="captions" src="cineshelf.vtt" srclang="en" label="English">
+  </video>
+  <p class="note">57 seconds, with sound and captions. Every title, poster and episode in the demo is invented.</p>
+
+  <section>
+    <h2>Jump straight in</h2>
+    <div class="grid">
+      <a class="card" href="app/#/"><img src="app/demo-media/backdrops/tv-hollow-meridian.webp" alt="" loading="lazy"><div><h3>TV shows</h3><p>Hero carousel, Recently Watched, your own shelves.</p></div></a>
+      <a class="card" href="app/#/series/hollow-meridian"><img src="app/demo-media/backdrops/tv-ashfall-county.webp" alt="" loading="lazy"><div><h3>A series</h3><p>Seasons, episodes, progress and resume points.</p></div></a>
+      <a class="card" href="app/#/movies"><img src="app/demo-media/backdrops/mv-perihelion-run-2020.webp" alt="" loading="lazy"><div><h3>Movies</h3><p>Collections and rows you arrange yourself.</p></div></a>
+      <a class="card" href="app/#/anime/blade-of-the-ninth-lantern"><img src="app/demo-media/backdrops/an-blade-of-the-ninth-lantern.webp" alt="" loading="lazy"><div><h3>Anime</h3><p>Canon, mixed and filler flags on every episode.</p></div></a>
+      <a class="card" href="app/#/player-overlay"><img src="app/demo-media/backdrops/tv-kestrel-and-finch.webp" alt="" loading="lazy"><div><h3>The player</h3><p>Move to the bottom edge for controls, the right edge for the playlist.</p></div></a>
+      <a class="card" href="app/#/browse"><img src="app/demo-media/backdrops/an-iron-koi.webp" alt="" loading="lazy"><div><h3>Browse</h3><p>Everything in one grid, by type.</p></div></a>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="how">
+      <div><h3>Scans your folders</h3><p>Point it at the drives where your shows, movies and anime live. It finds seasons and episodes on its own.</p></div>
+      <div><h3>Fetches the artwork</h3><p>Posters, backdrops, cast and episode details come from TMDB, AniList and Jikan, and are cached locally.</p></div>
+      <div><h3>Plays through VLC</h3><p>A real VLC process decodes the video. CineShelf draws its own overlay on top: tracks, subtitles, aspect ratio, playlist.</p></div>
+      <div><h3>Remembers everything</h3><p>Watch progress, resume points, favourites and custom rows, stored on your machine.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>CineShelf is a Windows app built with Electron and React. This page shows a browser demo with a fictional library and original generated artwork; playback, folders and metadata fetching need the desktop app.</span>
+    <a href="https://github.com/akash-verma-au16/cineshelf-showcase">This site's repo</a>
+  </footer>
+</div>
+</body>
+</html>
