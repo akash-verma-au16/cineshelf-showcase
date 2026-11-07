@@ -1,0 +1,6 @@
+video/work/frames/
+video/work/*.wav
+video/work/*.jpg
+video/work/*.log
+video/*.txt
+!video/narration.txt

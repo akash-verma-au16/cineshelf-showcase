@@ -1,0 +1,47 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>CineShelf title</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #070708; overflow: hidden; font-family: "Segoe UI", system-ui, sans-serif; }
+  #wall { position: absolute; left: 50%; top: 50%; width: 2600px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; transform-origin: center; }
+  #wall img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 8px; box-shadow: 0 12px 30px rgba(0,0,0,.6); }
+  #shade { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(7,7,8,.55) 0%, rgba(7,7,8,.88) 55%, #070708 100%); }
+  #mark { position: absolute; left: 0; right: 0; top: 41%; text-align: center; font: 900 132px/1 "Segoe UI Black", "Arial Black", sans-serif; letter-spacing: -.02em; color: #fff; }
+  #mark b { color: #e50914; font-weight: 900; }
+  #sub { position: absolute; left: 0; right: 0; top: 60%; text-align: center; color: #d9d9de; font: 500 30px/1.4 "Segoe UI", sans-serif; letter-spacing: .01em; }
+  #url { position: absolute; left: 0; right: 0; top: 67%; text-align: center; color: #ff6b73; font: 600 24px/1.4 Consolas, monospace; }
+  #fade { position: absolute; inset: 0; background: #000; }
+</style>
+<div id="wall"></div>
+<div id="shade"></div>
+<div id="mark"><b>CINE</b>SHELF</div>
+<div id="sub"></div>
+<div id="url"></div>
+<div id="fade"></div>
+<script>
+const P = ["tv-hollow-meridian","mv-perihelion-run-2020","an-blade-of-the-ninth-lantern","tv-ashfall-county","mv-ironvale-2019","an-iron-koi","tv-kestrel-and-finch","mv-moth-and-ember-2019","an-foxfire-relay","tv-lanterns-of-vell","mv-the-tidewright-2023","an-stardust-mechanic","tv-northbound-static","mv-velvet-undertow-2018","an-abyssal-skyline","tv-deepwater-frequency","mv-sundown-protocol-2022","an-tsukishiro-ghost-club","mv-the-last-cartographer-2021","mv-blue-hour-requiem-2016","an-raiko-delivery-bureau","mv-grey-lantern-road-2021","mv-the-orchard-thief-2023","an-yumegawa-cafe-diaries","mv-starling-avenue-2025","mv-echoes-of-kaldor-2018","mv-seven-lamps-for-orrin-2022","mv-a-winter-in-calderra-2017","mv-the-brightwater-ballroom-2020","mv-perihelion-run-ii-aphelion-2024"];
+const wall = document.getElementById("wall");
+const imgs = [];
+for (let i = 0; i < 48; i++) {
+  const im = document.createElement("img");
+  im.src = `/cineshelf-showcase/app/demo-media/posters/${P[(i * 7) % P.length]}.webp`;
+  wall.appendChild(im); imgs.push(im);
+}
+const q = new URLSearchParams(location.search), MODE = q.get("mode") || "intro", LEN = Number(q.get("len") || 5);
+const ease = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const c = (x) => Math.min(1, Math.max(0, x));
+document.getElementById("sub").textContent = MODE === "intro" ? "Your own media library, with a streaming-service feel." : "Try the demo in your browser.";
+document.getElementById("url").textContent = MODE === "intro" ? "" : "akash-verma-au16.github.io/cineshelf-showcase";
+window.render = (t) => {
+  const k = t / LEN;
+  wall.style.transform = `translate(-50%, -50%) perspective(1400px) rotateX(18deg) rotateZ(-8deg) translateY(${-120 + 240 * k}px) scale(${1.05 + 0.08 * k})`;
+  imgs.forEach((im, i) => { im.style.opacity = MODE === "intro" ? c((t - 0.03 * ((i * 13) % 48)) / 0.6) : 1; });
+  const m = ease(c((t - (MODE === "intro" ? 1.1 : 0.4)) / 0.9));
+  const mark = document.getElementById("mark");
+  mark.style.opacity = m; mark.style.letterSpacing = `${0.25 - 0.27 * m}em`; mark.style.transform = `scale(${1.08 - 0.08 * m})`;
+  const s = ease(c((t - (MODE === "intro" ? 1.9 : 1.1)) / 0.7));
+  for (const id of ["sub", "url"]) { const e = document.getElementById(id); e.style.opacity = s; e.style.transform = `translateY(${(1 - s) * 12}px)`; }
+  document.getElementById("fade").style.opacity = 1 - c(t / 0.4) * c((LEN - t) / 0.35);
+};
+window.render(0);
+</script>

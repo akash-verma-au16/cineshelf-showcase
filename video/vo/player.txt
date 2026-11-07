@@ -1,0 +1,1 @@
+﻿Press play, and a real VLC player opens under Sinny-Shelf's own controls. Tracks, subtitles and the next episode are one click away.

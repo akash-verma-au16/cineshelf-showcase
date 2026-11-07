@@ -1,0 +1,9 @@
+intro|Your shows, your movies, your anime. They're already on your drives.
+tvhome|CineShelf turns those folders into a library that feels like a streaming service.
+tvdetail|Every series gets its artwork, seasons and cast, and it remembers exactly where you stopped.
+movies|Movies get their own home, with shelves you arrange yourself.
+anime|Anime knows which episodes are canon and which are filler, so you can go straight to the story.
+browse|Browse all of it at once.
+player|Press play, and a real VLC player opens under CineShelf's own controls. Tracks, subtitles and the next episode are one click away.
+settings|It runs entirely offline, on your own files. No account. No subscription.
+outro|CineShelf. Try the demo in your browser.
